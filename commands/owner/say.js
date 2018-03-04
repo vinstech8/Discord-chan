@@ -22,7 +22,11 @@ class say extends commando.Command {
         });
     }
     async run(message, args) {
-        if (message.author.id != config.ownerid) return message.react("🚫"); // Cuts if not owner
+        if (message.author.id != config.ownerid) { // Cuts if not owner
+            message.react("🚫");
+            // TODO: Perhaps console log user who tries to access bot?
+            return 0;
+        }
 
         message.delete()
             .catch(console.error);
