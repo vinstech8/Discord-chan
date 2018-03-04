@@ -23,8 +23,8 @@ client.on("message", () => { // Message sent
 });
 
 client.registry
-    .registerCommandsIn(`${__dirname}/commands`)
     .registerDefaultTypes()
+    .registerCommandsIn(`${__dirname}/commands`)
     .registerDefaults()
     .registerGroups([
         ["basic", "Basic commands"],
