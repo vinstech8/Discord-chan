@@ -27,7 +27,8 @@ client.registry
     .registerDefaults()
     .registerGroups([
         ["basic", "Basic commands"],
-        ["management", "Management commands"]
+        ["management", "Management commands"],
+        ["owner", "Owner-only commands"]
     ]);
 
 client.login(config.token);
