@@ -33,10 +33,10 @@ class say extends commando.Command {
         
         if (!args.channel) return message.channel.send(args.text); // Sends if no channel mention
 
-        var argvals = args.text.split(" ");
-        if (argvals[argvals.length - 1] === "in") { // Checks if user states "send message in #channel"
-            argvals.pop(); // Pops off last element
-            var text = argvals.join(" "); // Joins elements
+        var argssplit = args.text.split(" ");
+        if (argssplit[argssplit.length - 1] === "in") { // Checks if user states "send message in #channel"
+            argssplit.pop(); // Pops off last element
+            var text = argssplit.join(" "); // Joins elements
         }
         args.channel.send(text); // Sends to specified channel
     }
