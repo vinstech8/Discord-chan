@@ -24,12 +24,13 @@ client.on("message", () => { // Message sent
 
 client.registry
     .registerDefaultTypes()
-    .registerCommandsIn(`${__dirname}/commands`)
-    .registerDefaults()
     .registerGroups([
         ["basic", "Basic commands"],
         ["management", "Management commands"],
         ["owner", "Owner-only commands"]
-    ]);
+    ])
+    .registerDefaultGroups()
+    .registerDefaultCommands()
+    .registerCommandsIn(`${__dirname}/commands`);
 
 client.login(config.token);
