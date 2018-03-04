@@ -22,7 +22,7 @@ class say extends commando.Command {
         });
     }
     async run(message, args) {
-        if (message.author.id != config.ownerid) { // Cuts if not owner
+        if (message.author.id !== config.ownerid) { // Cuts if not owner
             message.react("🚫");
             // TODO: Perhaps console log user who tries to access bot?
             return 0;
@@ -33,7 +33,12 @@ class say extends commando.Command {
         
         if (!args.channel) return message.channel.send(args.text); // Sends if no channel mention
 
-        args.channel.send(args.text); // Sends to specified channel
+        var argvals = args.text.split(" ");
+        if (argvals[argvals.length - 1] === "in") { // Checks if user states "send message in #channel"
+            argvals.pop(); // Pops off last element
+            var text = argvals.join(" "); // Joins elements
+        }
+        args.channel.send(text); // Sends to specified channel
     }
 }
 
