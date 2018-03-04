@@ -10,11 +10,11 @@ client.on("ready", () => { // Startup
     client.user.setActivity("with Vin's code | d!");
 });
 
-client.on("guildCreate", guild => { // Join a Guild 
+client.on("guildCreate", guild => { // Joined Guild 
     console.log(`Discord-chan has joined ${guild.name}. ID: ${guild.id}`);
 });
 
-client.on("guildDelete", guild => { // Leave a Guild
+client.on("guildDelete", guild => { // Left Guild
     console.log(`Discord-chan has left ${guild.name}. ID: ${guild.id}`);
 });
 
