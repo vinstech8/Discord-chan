@@ -9,14 +9,14 @@ class say extends commando.Command {
             group: "owner",
             aliases: ["sayd", "sd", "s", "saydelete", "tell"],
             args: [{
-                key: "channel",
-                prompt: "What channel should I put your message in?",
-                type: "channel",
-                default: ""
-            }, {
                 key: "text",
                 prompt: "What would you like me to say?",
                 type: "string"
+            }, {
+                key: "channel",
+                prompt: "What channel should I put your message in?",
+                type: "channel",
+                default: false
             }],
             description: "Discord-chan sends a message specified by her owner."
         });
@@ -26,7 +26,8 @@ class say extends commando.Command {
 
         message.delete()
             .catch(console.error);
-        if (!channel) return message.channel.send(args.text); // Sends if no channel mention
+        
+        if (!args.channel) return message.channel.send(args.text); // Sends if no channel mention
 
         args.channel.send(args.text); // Sends to specified channel
     }
