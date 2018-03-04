@@ -19,7 +19,7 @@ client.on("guildDelete", guild => { // Leave a Guild
 });
 
 client.on("message", () => { // Message sent
-
+    // Blank for now
 });
 
 client.registry
