@@ -24,8 +24,8 @@ client.on("message", () => { // Message sent
 
 client.registry
     .registerCommandsIn(`${__dirname}/commands`)
-    .registerDefaults()
     .registerDefaultTypes()
+    .registerDefaults()
     .registerGroups([
         ["basic", "Basic commands"],
         ["management", "Management commands"],
