@@ -27,21 +27,14 @@ class say extends commando.Command {
         message.delete()
             .catch(console.error);
 
-        if (!message.mentions.channels.first() && !message.mentions.channels.last()) return message.channel.send(args.text); // Sends if no channel mention
+        if (!message.mentions.channels.first()) return message.channel.send(args.text); // Sends if no channel mention
 
         var argsSplit = args.text.split(" ");
-        if (message.mentions.channels.first()) { // It says first but it actually finds channel mention regardless which is weird and stupid
-            // wait do i have to keep the check for message.mentions.channels.last()? TODO: test that shit
+        if (message.mentions.channels.first()) { // It says first but it actually finds channel mention regardless
+            if (argsSplit[argsSplit.length - 2] !== "d!in") argsSplit.slice(1); // Mention at start of msg
+            else argsSplit.splice(-2);  // Mention at end of msg
 
-            if (argsSplit[argsSplit.length - 2] !== "sto") { // Channel mention at start of msg
-                args.text = argsSplit
-                    .slice(1)
-                    .join(" "); // Removes channel out of text
-            } else { // Channel mention at end of msg
-                argsSplit.splice(-2); // Removes channel name and "STO"
-                args.text = argsSplit.join(" ");
-            }
-
+            args.text = argsSplit.join(" ");
             return message.mentions.channels.first().send(args.text);
         }
     }
