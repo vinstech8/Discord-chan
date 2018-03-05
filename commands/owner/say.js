@@ -20,7 +20,7 @@ class say extends commando.Command {
     async run(message, args) {
         if (message.author.id !== config.ownerid) { // Cuts if not owner
             message.react("🚫");
-            // TODO: Perhaps console log user who tries to access bot?
+            console.log(message.author);
             return 0;
         }
 
