@@ -30,13 +30,11 @@ class say extends commando.Command {
         if (!message.mentions.channels.first()) return message.channel.send(args.text); // Sends if no channel mention
 
         var argsSplit = args.text.split(" ");
-        if (message.mentions.channels.first()) { // It says first but it actually finds channel mention regardless
-            if (argsSplit[argsSplit.length - 2] !== "d!in") argsSplit.slice(1); // Mention at start of msg
-            else argsSplit.splice(-2);  // Mention at end of msg
+        if (argsSplit[0] !== "in") argsSplit.splice(0, 1); // Mention starts without in
+        else argsSplit.splice(0, 2); // Mention starts with in
 
-            args.text = argsSplit.join(" ");
-            return message.mentions.channels.first().send(args.text);
-        }
+        args.text = argsSplit.join(" ");
+        return message.mentions.channels.first().send(args.text);
     }
 }
 
