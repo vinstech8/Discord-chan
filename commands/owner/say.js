@@ -31,7 +31,8 @@ class say extends commando.Command {
 
         var argsSplit = args.text.split(" ");
         if (argsSplit[0] !== "in") argsSplit.splice(0, 1); // Mention starts without in
-        else argsSplit.splice(0, 2); // Mention starts with in
+        else if (argsSplit[0] === "in") argsSplit.splice(0, 2); // Mention starts with in
+        else return message.channel.send(args.text); // Found a channel mention that isn't trying to send to another channel
 
         args.text = argsSplit.join(" ");
         return message.mentions.channels.first().send(args.text);
