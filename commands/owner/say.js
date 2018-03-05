@@ -12,13 +12,9 @@ class say extends commando.Command {
                 key: "text",
                 prompt: "What would you like me to say?",
                 type: "string"
-            }, {
-                key: "channel",
-                prompt: "What channel should I put your message in?",
-                type: "channel",
-                default: false
             }],
             description: "Discord-chan sends a message specified by her owner."
+            // TODO: Add usage examples
         });
     }
     async run(message, args) {
@@ -30,17 +26,24 @@ class say extends commando.Command {
 
         message.delete()
             .catch(console.error);
-        
-        if (!args.channel) return message.channel.send(args.text); // Sends if no channel mention
+
+        if (!message.mentions.channels.first() && !message.mentions.channels.last()) return message.channel.send(args.text); // Sends if no channel mention
 
         var argsSplit = args.text.split(" ");
-        var text;
-        console.log();
-        if (argsSplit[argsSplit.length - 1] === "in") { // Checks if user states "send message in #channel"
-            argsSplit.pop(); // Pops off last element
-            args.text = argsSplit.join(" "); // Joins elements
+        if (message.mentions.channels.first()) { // It says first but it actually finds channel mention regardless which is weird and stupid
+            // wait do i have to keep the check for message.mentions.channels.last()? TODO: test that shit
+
+            if (argsSplit[argsSplit.length - 2] !== "sto") { // Channel mention at start of msg
+                args.text = argsSplit
+                    .slice(1)
+                    .join(" "); // Removes channel out of text
+            } else { // Channel mention at end of msg
+                argsSplit.splice(-2); // Removes channel name and "STO"
+                args.text = argsSplit.join(" ");
+            }
+
+            return message.mentions.channels.first().send(args.text);
         }
-        args.channel.send(args.text); // Sends to specified channel
     }
 }
 
