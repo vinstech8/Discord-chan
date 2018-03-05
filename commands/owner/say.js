@@ -10,7 +10,7 @@ class say extends commando.Command {
             memberName: "say",
             description: "Discord-chan sends a message specified by her owner.",
             details: "Discord-chan sends a message specified by her owner. If a channel is mentioned first, she will say it in that channel. ",
-            format: "d!say <#channel> <content>",
+            format: "<#channel> <content>",
             examples: ["d!say hi", "d!say #channel hi", "d!say in #channel hi"],
             args: [{
                 key: "text",
