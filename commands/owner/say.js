@@ -5,16 +5,18 @@ class say extends commando.Command {
     constructor(client) {
         super(client, {
             name: "say",
-            memberName: "say",
-            group: "owner",
             aliases: ["sayd", "sd", "s", "saydelete", "tell"],
+            group: "owner",
+            memberName: "say",
+            description: "Discord-chan sends a message specified by her owner.",
+            details: "Discord-chan sends a message specified by her owner. If a channel is mentioned first, she will say it in that channel. ",
+            format: "d!say <#channel> <content>",
+            examples: ["d!say hi", "d!say #channel hi", "d!say in #channel hi"],
             args: [{
                 key: "text",
                 prompt: "What would you like me to say?",
                 type: "string"
-            }],
-            description: "Discord-chan sends a message specified by her owner."
-            // TODO: Add usage examples
+            }]
         });
     }
     async run(message, args) {
