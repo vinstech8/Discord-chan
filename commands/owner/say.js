@@ -30,14 +30,16 @@ class say extends commando.Command {
             .catch(console.error);
 
         if (!message.mentions.channels.first()) return message.channel.send(args.text); // Sends if no channel mention
-
+        
+        var originalArgsText = args.text; // Used in case of blank message string
         var argsSplit = args.text.split(" ");
         if (argsSplit[0] !== "in") argsSplit.splice(0, 1); // Mention starts without in
         else if (argsSplit[0] === "in") argsSplit.splice(0, 2); // Mention starts with in
         else return message.channel.send(args.text); // Found a channel mention that isn't trying to send to another channel
 
         args.text = argsSplit.join(" ");
-        return message.mentions.channels.first().send(args.text);
+        if (!args.text) return message.channel.send(originalArgsText); // If message string is blank
+        else return message.mentions.channels.first().send(args.text);
     }
 }
 
