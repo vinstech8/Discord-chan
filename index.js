@@ -18,7 +18,7 @@ client.on("guildDelete", guild => { // Left Guild
     console.log(`Discord-chan has left ${guild.name}. ID: ${guild.id}`);
 });
 
-client.on("message", () => { // Message sent
+client.on("message", () => { // Message Sent
     // Blank for now
 });
 
