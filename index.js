@@ -7,7 +7,7 @@ const client = new commando.Client({
 
 client.on("ready", () => { // Startup
     console.log(`Discord-chan is online on ${client.guilds.size} guilds.`);
-    client.user.setActivity("with Vin's code | d!");
+    client.user.setActivity("Vin's code | d!", { type: "WATCHING" });
 });
 
 client.on("guildCreate", guild => { // Joined Guild 
