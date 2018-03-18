@@ -30,6 +30,7 @@ class info extends commando.Command {
             .addField("User ID", args.user.id, true)
             .addField("Discriminator Tag", args.user.tag, true)
             .addField("Status", args.user.presence.status.toUpperCase(), true)
+            .setThumbnail("https://vignette.wikia.nocookie.net/central/images/6/60/Discord-logo.png/revision/latest?cb=20170621125902")
             .setTimestamp(args.user.createdAt)
             .setFooter("Account created on");
 
